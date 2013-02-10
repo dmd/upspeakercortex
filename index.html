@@ -244,6 +244,12 @@
                 return words[0];
             }
 
+            function load()
+            {
+                // removed from original: load other word list
+                valid_words = build_index(valid_words);
+            }
+            
             function refresh_index() 
             {
                 if (typeof (valid_words[0]) != "object") 
@@ -422,7 +428,7 @@
         </style>
     </head>
     
-    <body>
+    <body onload="load()">
         <div id="Main">
             <header>
                 
@@ -435,10 +441,13 @@
                 <P>hint: don't use anything but a-z and space... remove 's</P>
             </section>
             <ul id="Suggestions"></ul>
+            
             <section class="content">
-                <div id="BgLayer"></div>
-                <textarea id="Text" contenteditable onscroll="sync_layers()" onload="this.focus()"></textarea>
+                <div id="BgLayer">
+                </div>
+                <textarea id="Text" contenteditable onkeyup="check_words()" onscroll="sync_layers()" onload="this.focus()"></textarea>
             </section>
+           
             <input type="button" id="speak" disabled=false onclick="try_speak_words()" value="Speak!" />
             <input type="button" id="share" value="Share!" />
             <div id="jquery_jplayer_1" class="jp-jplayer"></div>
