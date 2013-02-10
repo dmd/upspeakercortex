@@ -72,6 +72,16 @@ function getParameterByName(name)
 return"";else
 return decodeURIComponent(results[1].replace(/\+/g," "));}
 $(document).ready(function(){$("#jquery_jplayer_1").jPlayer({ready:function(){$("#speak").prop('disabled',false);},swfPath:"/upspeakercortex/Jplayer.swf",supplied:"mp3",ended:play_next_word,});var p=getParameterByName('words');if(p!=""){$("#Text").val(p);$("#speak").click();}});</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#share').click(function(){
+			var rawText = $('#Text').val();
+			var polishedText = rawText.replace(/ /g, '%20');
+			polishedText = polishedText.replace(/(\r\n|\n|\r)/gm,"%0A")
+			$(this).after('<input type="text" value="http://3e.org/upspeakercortex/' + polishedText + '" style="width:486px;"></input>');
+		})
+	})
+</script>
 <style type="text/css">body{background-color:#fff;color:#000;padding:0px;margin:0px;font-family:Tahoma,sans-serif;font-size:14px}#Main{width:620px;margin:20px auto}section.content{height:420px}#Text,#BgLayer{padding:2px;font-size:16px;font-family:Tahoma,sans-serif;color:#000;line-height:1.5em;height:400px;width:600px;display:block;background-color:transparent;overflow:auto}#Text{position:absolute;margin:0px;padding:0px}#BgLayer{color:transparent;background-color:#eee;position:absolute;padding:0px;padding-left:1px}#BgLayer invalid{background-color:#ffa0a0}#BgLayer valid{background-color:#80d080}#Suggestions{position:absolute;margin:0px;padding:0px;margin-left:610px;list-style-type:none;max-height:400px;overflow:auto;min-width:150px}#Suggestions li{margin:0px;padding:10px;padding-top:2px;padding-bottom:2px;color:#909090}.hint{color:#909090}h1{font-size:200%}</style>
 </head>
 <body>
@@ -91,6 +101,7 @@ $(document).ready(function(){$("#jquery_jplayer_1").jPlayer({ready:function(){$(
 <textarea id="Text" contenteditable onscroll="sync_layers()" onload="this.focus()"></textarea>
 </section>
 <input type="button" id="speak" disabled=false onclick="try_speak_words()" value="Speak!"/>
+<input type="button" id="share" value="Share!" />
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 <div id="jp_container_1" class="jp-audio"></div>
 <p><a href="https://github.com/dmd/upspeakercortex">Help me make this work better! Submit a pull request on Github.</a></p>
