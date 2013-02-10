@@ -15,6 +15,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
         <script type="text/javascript" src="http://3e.org/upspeakercortex/jquery.jplayer.min.js.pagespeed.jm.nU-LlHu1vH.js"></script>
         <script stype="text/javascript">
+            // 1000 most common words
             var valid_words = ["a", "able", "about", "above", "absolutely", "access", "account", "across", "act", "action", "actual", "actually", "add", "address", "advice", "after", "again", "against", "age", "ago", "agree", "air", "all", "allow", "allowed", "almost", "alone", "along", "already", "also", "although", "always", "am", "amazing", "america", "american", "americans", "among", "amount", "an", "analog", "and", "another", "answer", "answers", "any", "anyone", "anything", "anyway", "apparently", "are", "area", "arent", "argument", "around", "art", "article", "as", "ask", "asked", "asking", "ass", "assume", "at", "attention", "available", "avoid", "away", "awesome", "baby", "back", "bad", "bar", "based", "basic", "basically", "be", "because", "bee", "been", "before", "behavior", "behind", "being", "believe", "best", "bet", "better", "between", "beyond", "big", "bill", "bit", "black", "blog", "blue", "body", "book", "books", "both", "bought", "box", "brain", "break", "bring", "building", "bunch", "bush", "business", "but", "buy", "buying", "by", "c", "call", "called", "calling", "came", "can", "cannot", "cant", "car", "card", "care", "case", "cases", "cat", "cause", "certain", "certainly", "chance", "change", "changed", "cheap", "check", "child", "children", "choice", "choose", "city", "claim", "class", "clear", "clearly", "close", "code", "cold", "college", "com", "come", "comes", "coming", "comment", "comments", "common", "community", "companies", "company", "completely", "computer", "consider", "considered", "contact", "content", "continue", "control", "conversation", "cool", "copy", "correct", "cost", "could", "couldnt", "country", "couple", "course", "cover", "crap", "crazy", "create", "credit", "culture", "current", "cut", "damn", "data", "date", "day", "days", "dead", "deal", "death", "decide", "definitely", "design", "did", "didnt", "die", "difference", "different", "difficult", "directly", "discussion", "do", "doctor", "does", "doesnt", "dog", "doing", "done", "dont", "door", "doubt", "down", "drink", "drive", "due", "during", "e", "each", "early", "easier", "easily", "easy", "eat", "eating", "effect", "eight", "either", "eleven", "else", "email", "end", "energy", "english", "enjoy", "enough", "entire", "entirely", "especially", "etc", "even", "eventually", "ever", "every", "everyone", "everything", "evidence", "exactly", "example", "excellent", "except", "expect", "expensive", "experience", "explain", "extra", "eyes", "face", "fact", "fair", "fairly", "fall", "family", "far", "fast", "favorite", "feel", "feeling", "felt", "few", "field", "fifteen", "fifty", "figure", "file", "film", "finally", "find", "finding", "fine", "first", "fit", "five", "folks", "follow", "food", "for", "force", "forget", "form", "found", "four", "free", "friend", "friends", "from", "front", "fuck", "fucking", "full", "fun", "funny", "further", "future", "game", "games", "gave", "gay", "general", "generally", "get", "gets", "getting", "girl", "give", "given", "gives", "giving", "go", "god", "goes", "going", "gone", "good", "google", "got", "government", "great", "group", "guess", "guy", "guys", "had", "hair", "half", "hand", "hands", "happen", "happened", "happens", "happy", "hard", "has", "hate", "have", "havent", "having", "he", "head", "health", "hear", "heard", "heart", "hell", "help", "her", "here", "heres", "hes", "hey", "high", "higher", "him", "himself", "his", "history", "hit", "hold", "home", "hope", "hot", "hour", "hours", "house", "how", "however", "http", "huge", "human", "i", "id", "idea", "ideas", "if", "ill", "im", "image", "imagine", "important", "in", "including", "indeed", "information", "inside", "instead", "insurance", "interest", "interested", "interesting", "internet", "into", "involved", "iraq", "is", "isnt", "issue", "issues", "it", "its", "itself", "ive", "job", "jobs", "john", "just", "keep", "key", "kid", "kids", "kill", "kind", "knew", "know", "known", "knows", "lack", "language", "large", "last", "late", "later", "law", "learn", "learned", "least", "leave", "left", "legal", "less", "let", "lets", "level", "life", "light", "like", "liked", "likely", "line", "link", "links", "list", "listen", "little", "live", "lived", "lives", "living", "local", "long", "longer", "look", "looked", "looking", "looks", "lose", "lost", "lot", "lots", "love", "low", "luck", "machine", "made", "main", "major", "make", "makes", "making", "man", "many", "market", "matter", "may", "maybe", "me", "mean", "means", "meant", "media", "meet", "mefi", "members", "men", "mention", "mentioned", "metafilter", "middle", "might", "military", "mind", "mine", "minutes", "mom", "moment", "money", "month", "months", "more", "morning", "most", "mostly", "mother", "move", "movie", "movies", "moving", "mr", "much", "music", "must", "my", "myself", "name", "national", "near", "nearly", "necessary", "need", "needed", "needs", "never", "new", "news", "next", "nice", "night", "nine", "no", "nobody", "none", "normal", "not", "note", "nothing", "notice", "now", "number", "numbers", "obama", "obvious", "obviously", "of", "off", "offer", "office", "often", "oh", "oil", "ok", "okay", "old", "older", "on", "once", "one", "onehundred", "ones", "online", "only", "open", "opinion", "option", "or", "orders", "original", "other", "others", "otherwise", "our", "out", "outside", "over", "own", "page", "paid", "pain", "paper", "parents", "part", "particular", "particularly", "parts", "party", "past", "pay", "paying", "people", "per", "perfect", "perhaps", "person", "personal", "personally", "phone", "pick", "picture", "pictures", "piece", "place", "places", "plan", "play", "playing", "please", "plenty", "plus", "point", "points", "police", "policy", "political", "poor", "popular", "position", "possible", "possibly", "post", "posted", "posting", "posts", "power", "president", "pretty", "price", "private", "probably", "problem", "problems", "process", "program", "project", "provide", "public", "put", "putting", "quality", "question", "questions", "quickly", "quite", "rate", "rather", "read", "reading", "real", "realize", "really", "reason", "reasons", "recent", "recently", "recommend", "record", "red", "regular", "related", "relationship", "religion", "religious", "remember", "research", "respect", "response", "rest", "result", "results", "right", "rights", "risk", "rock", "room", "rules", "run", "running", "s", "safe", "said", "same", "save", "saw", "say", "saying", "says", "school", "science", "search", "second", "security", "see", "seeing", "seem", "seemed", "seems", "seen", "sell", "send", "sense", "series", "serious", "seriously", "service", "set", "seven", "several", "sex", "share", "she", "shes", "shit", "short", "shot", "should", "shouldnt", "show", "shows", "side", "sign", "similar", "simple", "simply", "since", "single", "site", "sites", "situation", "six", "size", "sleep", "small", "so", "social", "society", "software", "solution", "some", "somehow", "someone", "something", "sometimes", "somewhere", "song", "soon", "sorry", "sort", "sound", "sounds", "source", "south", "space", "speak", "speaking", "special", "specific", "spend", "spent", "stand", "standard", "start", "started", "state", "states", "stay", "step", "still", "stop", "store", "stories", "story", "straight", "street", "strong", "students", "stuff", "stupid", "style", "subject", "such", "suggest", "support", "supposed", "sure", "surprised", "system", "take", "taken", "takes", "taking", "talk", "talking", "tax", "tell", "telling", "ten", "tend", "term", "terms", "test", "text", "than", "thank", "thanks", "that", "thats", "the", "their", "them", "themselves", "then", "theory", "there", "theres", "these", "they", "theyll", "theyre", "theyve", "thing", "things", "think", "thinking", "third", "thirty", "this-is-cortex", "this", "those", "though", "thought", "thread", "three", "through", "time", "times", "to", "today", "together", "told", "too", "took", "top", "totally", "towards", "town", "tried", "trouble", "true", "truly", "trust", "try", "trying", "turn", "turned", "tv", "twenty", "two", "type", "u", "under", "understand", "unless", "until", "up", "upon", "us", "use", "used", "useful", "user", "using", "usually", "value", "various", "version", "very", "via", "video", "view", "vote", "wait", "walk", "want", "wanted", "wants", "war", "was", "wasnt", "watch", "watching", "water", "way", "ways", "we", "wear", "web", "website", "week", "weeks", "weight", "weird", "well", "went", "were", "weve", "what", "whatever", "whats", "when", "where", "whether", "which", "while", "white", "who", "whole", "why", "wife", "will", "willing", "windows", "wish", "with", "within", "without", "woman", "women", "wonder", "wont", "word", "words", "work", "worked", "working", "works", "world", "worry", "worse", "worth", "would", "wouldnt", "wow", "write", "writing", "written", "wrong", "wrote", "x", "yeah", "year", "years", "yes", "yet", "you", "youd", "youll", "young", "your", "youre", "yourself", "youve", "zero", "zerozerozero"];
             var wordmap = {};
 
@@ -27,10 +28,12 @@
             }
             words_to_play = [];
 
+            // trim for IE8 compatibility
             function trim(str) {
                 return str.replace(/^\s+|\s+$/g, '');
             }
 
+            // indexOf(x) >= 0 for IE8 compatibility
             function contains(array, el) {
                 for (var i = 0; i < array.length; i++) {
                     if (array[i] == el) return true;
@@ -38,10 +41,21 @@
                 return false;
             }
 
-            function build_index(dict) {
+            /**
+             * Creates a hash map of the first letters of words. Every entry of the returned array
+             * corresponds to one letter and contains all the words that start with it.
+             * @param dict word list
+             * @return {Array}
+             */
+            function build_index(dict) 
+            {
+                // make sure it's sorted properly
                 dict.sort();
+                
+                // Build a index based on the first letter of the words
                 var tree = [];
                 var current_letter = '';
+                
                 for (var i = 0; i < dict.length; i++) {
                     var first_letter = dict[i].charAt(0);
                     if (first_letter != current_letter) {
@@ -53,13 +67,26 @@
                 return tree;
             }
 
-            function index_contains(word) {
+            /**
+             * Checks if the index contains the word.
+             * @param word some word
+             * @return {Boolean}
+             */
+            function index_contains(word) 
+            {
                 var index = valid_words[word.charAt(0)];
                 if (typeof (index) == "undefined") return false;
                 return contains(index, word);
             }
 
-            function is_valid(word) {
+            /**
+             * Checks if a word is in the index and therefore valid.
+             * @param word some word
+             * @return {Boolean}
+             */
+            function is_valid(word) 
+            {
+                // if the word is hyphenated, check the parts individually
                 if (word.match(/-/)) {
                     var parts = word.split("-");
                     var valid = true;
@@ -73,15 +100,32 @@
                 return index_contains(word) || index_contains(word.toLowerCase());
             }
 
-            function strip_special(word) {
+            /**
+             * Removes special chars (everything that's not a letter) from the word.
+             * @param word some word
+             * @return {String}
+             */
+            function strip_special(word) 
+            {
                 return word.replace(/[^a-zA-Z']/g, "").replace("\"", "").replace(".", "");
             }
 
-            function get_text() {
+            /**
+             * Gets the text that was entered by the user so far.
+             * @return {String}
+             */
+            function get_text() 
+            {
                 return document.getElementById("Text").value;
             }
 
-            function get_input_words() {
+            /**
+             * Returns an array of the words that were typed in by the user splitted by spaces
+             * and annotated with <valid/> and <invalid/> tags.
+             * @return {Array}
+             */
+            function get_input_words() 
+            {
                 var textfield = document.getElementById("Text");
                 var text = get_text().replace(/\n/g, " <br> ");
                 var words = text.split(/\s/);
@@ -95,14 +139,20 @@
                 return words;
             }
 
-            function get_input_words_bare() {
+            function get_input_words_bare() 
+            {
                 var textfield = document.getElementById("Text");
                 var text = get_text().replace(/\n/g, " <br> ");
                 var words = text.split(/\s/);
                 return words;
             }
 
-            function check_words() {
+            /**
+             * Checks all the words in the text area and highlights valid and invalid words.
+             * Additionally suggestions for the last word are shown.
+             */
+            function check_words() 
+            {
                 var input_words = get_input_words();
                 var words = [];
                 for (var i = 0, j = 0; i < input_words.length; i++) {
@@ -113,12 +163,18 @@
                         words.push(" ");
                     }
                 }
+                
+                // alternate spaces
                 for (i = 0; i < words.length - 1; i++) {
                     if (words[i] == " " && words[i + 1] == " ") {
                         words[i] = "&nbsp;";
                     }
                 }
+                
+                // update the background layer
                 document.getElementById("BgLayer").innerHTML = words.join("");
+                
+                // Last word
                 document.getElementById("Suggestions").innerHTML = "";
                 var last_word = find_last_word(words);
                 if (last_word != null) {
@@ -127,11 +183,21 @@
                 }
             }
 
-            function sync_layers() {
+            /**
+             * Syncs the scroll position of the text editor and the background layer
+             */
+            function sync_layers() 
+            {
                 document.getElementById("BgLayer").scrollTop = document.getElementById("Text").scrollTop;
             }
 
-            function show_suggestions(word) {
+            /**
+             * Shows other words that are similar (e.g. share a common prefix) with a word
+             * next to the text editor.
+             * @param word
+             */
+            function show_suggestions(word) 
+            {
                 if (word == null) return;
                 var first_letter = word.charAt(0);
                 var suggestions = document.getElementById("Suggestions");
@@ -149,14 +215,26 @@
                 }
             }
 
-            function strip_html(word) {
+            /**
+             * Strips all HTML tags from the given word.
+             * @param word Some word
+             * @return {String}
+             */
+            function strip_html(word) 
+            {
                 var el = document.createElement("div");
                 el.innerHTML = word;
                 if (el.innerText) return el.innerText;
                 else return el.textContent;
             }
 
-            function find_last_word(words) {
+            /**
+             * Returns the last word in a list of words as returned by get_input_words().
+             * @param words words from get_input_words()
+             * @return {*}
+             */
+            function find_last_word(words) 
+            {
                 for (var i = words.length - 1; i >= 0; i--) {
                     var part = strip_html(trim(words[i]));
                     if (part == "") continue;
@@ -165,11 +243,14 @@
                 return words[0];
             }
 
-            function refresh_index() {
-                if (typeof (valid_words[0]) != "object") valid_words = build_index(valid_words);
+            function refresh_index() 
+            {
+                if (typeof (valid_words[0]) != "object") 
+                    valid_words = build_index(valid_words);
             }
 
-            function playwords(words) {
+            function playwords(words) 
+            {
                 if (words.length == 0) {
                     console.log('play ended');
                     return;
@@ -179,7 +260,8 @@
                 playword_then_words(word, words);
             }
 
-            function play_next_word() {
+            function play_next_word() 
+            {
                 if (words_to_play.length == 0) {
                     console.log('play ended');
                     return;
@@ -192,13 +274,15 @@
                 $("#jquery_jplayer_1").jPlayer("play");
             }
 
-            function preload(urls) {
+            function preload(urls) 
+            {
                 $(urls).each(function () {
                     $('<img/>')[0].src = this;
                 });
             }
 
-            function url_of(word) {
+            function url_of(word) 
+            {
                 prefix = "";
                 if (document.location.host == "3e.org") {
                     prefix = "/upspeakercortex/";
@@ -206,7 +290,8 @@
                 return prefix + "words/" + word + ".mp3";
             }
 
-            function try_speak_words() {
+            function try_speak_words() 
+            {
                 var allwords = get_input_words_bare();
                 var words = [];
                 for (var i in allwords) {
@@ -228,7 +313,8 @@
                 play_next_word();
             }
 
-            function getParameterByName(name) {
+            function getParameterByName(name) 
+            {
                 name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
                 var regexS = "[\\?&]" + name + "=([^&#]*)";
                 var regex = new RegExp(regexS);
@@ -270,14 +356,14 @@
                 padding:0px;
                 margin:0px;
                 font-family:Tahoma, sans-serif;
-                font-size:14px
+                font-size:14px;
             }
             #Main {
                 width:620px;
-                margin:20px auto
+                margin:20px auto;
             }
             section.content {
-                height:420px
+                height:420px;
             }
             #Text, #BgLayer {
                 padding:2px;
@@ -289,25 +375,25 @@
                 width:600px;
                 display:block;
                 background-color:transparent;
-                overflow:auto
+                overflow:auto;
             }
             #Text {
                 position:absolute;
                 margin:0px;
-                padding:0px
+                padding:0px;
             }
             #BgLayer {
                 color:transparent;
                 background-color:#eee;
                 position:absolute;
                 padding:0px;
-                padding-left:1px
+                padding-left:1px;
             }
             #BgLayer invalid {
-                background-color:#ffa0a0
+                background-color:#ffa0a0;
             }
             #BgLayer valid {
-                background-color:#80d080
+                background-color:#80d080;
             }
             #Suggestions {
                 position:absolute;
@@ -317,20 +403,20 @@
                 list-style-type:none;
                 max-height:400px;
                 overflow:auto;
-                min-width:150px
+                min-width:150px;
             }
             #Suggestions li {
                 margin:0px;
                 padding:10px;
                 padding-top:2px;
                 padding-bottom:2px;
-                color:#909090
+                color:#909090;
             }
             .hint {
-                color:#909090
+                color:#909090;
             }
             h1 {
-                font-size:200%
+                font-size:200%;
             }
         </style>
     </head>
