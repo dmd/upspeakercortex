@@ -9,9 +9,8 @@ for (var i in valid_words) {
 words_to_play = [];
 
 function normalize(word) {
-    word = word.toLowerCase().replace(/[^a-z]/g, '');
-    console.log(word);
-    return word;
+    if (typeof word !== 'string') return '';
+    return word.toLowerCase().replace(/[^a-z]/g, '');
 }
 
 // trim for IE8 compatibility
