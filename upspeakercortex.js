@@ -5,7 +5,7 @@ var wordmap = {};
 function normalize(word) {
     return word.toLowerCase();
 }
-for (i in valid_words) {
+for (var i in valid_words) {
     var w = normalize(valid_words[i]);
     wordmap[w] = true;
 }
@@ -77,7 +77,7 @@ function is_valid(word) {
         return valid;
     }
     word = strip_special(trim(word)).replace(/'s$/, "");
-    if (word == "") return false;
+    if (word === "") return false;
     return index_contains(word) || index_contains(word.toLowerCase());
 }
 
@@ -108,7 +108,7 @@ function get_input_words() {
     var text = get_text().replace(/\n/g, " <br> ");
     var words = text.split(/\s/);
     for (var i = words.length - 1; i >= 0; i--) {
-        if (trim(words[i]) == "" || words[i] == "<br>") continue;
+        if (trim(words[i]) === "" || words[i] === "<br>") continue;
         var valid = is_valid(trim(words[i]));
         words[i] = words[i].replace(/</g, "&lt;").replace(/>/g, "&gt;");
         if (!valid) words[i] = "<invalid>" + words[i] + "</invalid>";
@@ -132,7 +132,7 @@ function check_words() {
     var input_words = get_input_words();
     var words = [];
     for (var i = 0, j = 0; i < input_words.length; i++) {
-        if (input_words[i] != "") {
+        if (input_words[i] !== "") {
             words.push(input_words[i]);
         }
         if (input_words[i] != "<br>") {
@@ -153,7 +153,7 @@ function check_words() {
     // Last word
     document.getElementById("Suggestions").innerHTML = "";
     var last_word = find_last_word(words);
-    if (last_word != null) {
+    if (last_word !== null) {
         show_suggestions(last_word);
         if (last_word.match(/^[A-Z]/)) show_suggestions(last_word.toLowerCase());
     }
@@ -172,7 +172,7 @@ function sync_layers() {
  * @param word
  */
 function show_suggestions(word) {
-    if (word == null) return;
+    if (word === null) return;
     var first_letter = word.charAt(0);
     var suggestions = document.getElementById("Suggestions");
     var index = valid_words[first_letter];
@@ -209,7 +209,7 @@ function strip_html(word) {
 function find_last_word(words) {
     for (var i = words.length - 1; i >= 0; i--) {
         var part = strip_html(trim(words[i]));
-        if (part == "") continue;
+        if (part === "") continue;
         return part;
     }
     return words[0];
@@ -226,7 +226,7 @@ function refresh_index() {
 }
 
 function playwords(words) {
-    if (words.length == 0) {
+    if (words.length === 0) {
         console.log('play ended');
         return;
     }
@@ -236,14 +236,14 @@ function playwords(words) {
 }
 
 function play_next_word() {
-    if (words_to_play.length == 0) {
+    if (words_to_play.length === 0) {
         console.log('play ended');
         return;
     }
     var word = words_to_play[0];
     words_to_play.shift();
     $("#jquery_jplayer_1").jPlayer("setMedia", {
-        mp3: url_of(word),
+        mp3: url_of(word)
     });
     $("#jquery_jplayer_1").jPlayer("play");
 }
@@ -273,10 +273,10 @@ function try_speak_words() {
             console.log("invalid word: " + w);
         }
     }
-    if (words.length == 0) return;
+    if (words.length === 0) return;
     words_to_play = words;
     var urls = [];
-    for (var i in words) {
+    for (i in words) {
         urls.push(url_of(words[i]));
     }
     console.log('preloading initiated!');
@@ -285,12 +285,15 @@ function try_speak_words() {
 }
 
 function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    name = name.replace('[', '\\[').replace(']', '\\]');
     var regexS = "[\\?&]" + name + "=([^&#]*)";
     var regex = new RegExp(regexS);
     var results = regex.exec(window.location.search);
-    if (results == null) return "";
-    else return decodeURIComponent(results[1].replace(/\+/g, " "));
+    if (results === null) {
+        return "";
+    } else {
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 }
 
 function upspeakerPrepare() {
@@ -303,7 +306,7 @@ function upspeakerPrepare() {
         ended: play_next_word
     });
     var p = getParameterByName('words');
-    if (p != "") {
+    if (p !== "") {
         $("#Text").val(p);
         $("#speak").click();
     }
@@ -311,7 +314,7 @@ function upspeakerPrepare() {
         $('#shareInput').remove();
         var rawText = $('#Text').val();
         var polishedText = rawText.replace(/ /g, '%20');
-        polishedText = polishedText.replace(/(\r\n|\n|\r)/gm, "%0A")
+        polishedText = polishedText.replace(/(\r\n|\n|\r)/gm, "%0A");
         $(this).after('<input type="text" value="http://3e.org/upspeakercortex/?words=' + polishedText + '" style="width:486px;" id="shareInput"></input>');
-    })
+    });
 }
