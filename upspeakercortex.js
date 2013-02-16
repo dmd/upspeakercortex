@@ -308,6 +308,6 @@ function upspeakerPrepare() {
         var rawText = $('#Text').val();
         var polishedText = rawText.replace(/ /g, '%20');
         polishedText = polishedText.replace(/(\r\n|\n|\r)/gm, "%0A");
-        $(this).after('<input type="text" value="http://3e.org/upspeakercortex/?words=' + polishedText + '" style="width:486px;" id="shareInput"></input>');
+        $(this).after('<input type="text" value="http://3e.org/upspeakercortex/#words=' + polishedText + '" style="width:486px;" id="shareInput"></input>');
     });
 }
