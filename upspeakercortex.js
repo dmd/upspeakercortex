@@ -279,9 +279,9 @@ function try_speak_words() {
 
 function getParameterByName(name) {
     name = name.replace('[', '\\[').replace(']', '\\]');
-    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regexS = "[\\?&#]" + name + "=([^&]*)";
     var regex = new RegExp(regexS);
-    var results = regex.exec(window.location.search);
+    var results = regex.exec(window.location.search + window.location.hash);
     if (results === null) {
         return "";
     } else {
